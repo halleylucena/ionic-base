@@ -1,5 +1,5 @@
 {
-  "name": "ionic-host",
+  "name": "ionic-base",
   "integrations": {
     "capacitor": {}
   },

@@ -1,14 +1,21 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import App from "./App"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from 'react-query/devtools'
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import reportWebVitals from "./reportWebVitals"
 
 const container = document.getElementById("root")
 const root = createRoot(container!)
+const queryClient = new QueryClient()
+
 root.render(
     <React.StrictMode>
-        <App />
+        <QueryClientProvider client={queryClient}>
+            <App />
+            <ReactQueryDevtools  initialIsOpen={false}/>
+        </QueryClientProvider>
     </React.StrictMode>
 )
 

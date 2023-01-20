@@ -29,7 +29,9 @@ const DocumentDetail: React.FC = () => {
                         </IonButton>
                     </IonButtons>
                     <IonButtons slot="secondary">
-                        <PopOverMenu children={<DocumentDetailsOptions />} />
+                        <React.Suspense>
+                            <PopOverMenu children={<DocumentDetailsOptions />} />
+                        </React.Suspense>
                     </IonButtons>
                     <IonTitle>{`Document ${id}`}</IonTitle>
                 </IonToolbar>

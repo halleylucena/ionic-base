@@ -1,12 +1,11 @@
 {
-  "name": "ionic-host",
+  "name": "ionic-base",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@capacitor/app": "4.0.1",
     "@capacitor/core": "4.3.0",
     "@capacitor/haptics": "4.0.1",
-    "@capacitor/ios": "^4.3.0",
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/react": "^6.0.0",
@@ -20,9 +19,11 @@
     "@types/react-dom": "^18.0.6",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "axios": "^1.2.2",
     "ionicons": "^6.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
@@ -42,7 +43,7 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "start": "node ./scripts/start.js",
+    "start": "PORT=3003 node ./scripts/start.js",
     "build": "node ./scripts/build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -66,7 +67,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "4.3.0",
+    "@capacitor/cli": "^4.3.0",
     "concurrently": "^7.4.0",
     "workbox-webpack-plugin": "^6.5.4"
   },
