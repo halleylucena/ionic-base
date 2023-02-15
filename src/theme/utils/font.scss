@@ -1,0 +1,17 @@
+.t {
+    &--700 {
+        font-weight: 700;
+    }
+
+    &--blue {
+        color: var(--color-blue-porto);
+    }
+
+    &--ellipsis {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        vertical-align: middle;
+    }
+}

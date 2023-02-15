@@ -1,0 +1,63 @@
+.login {
+    &__logo {
+        width: 200px;
+        font-size: 64px;
+    }
+
+    &__card {
+        padding: 20px;
+    }
+
+    &__forgot {
+        font-size: 11px;
+        position: absolute;
+        right: 0;
+        top: 7px;
+    }
+
+    &__btn {
+        margin: 20px 0;
+        text-transform: none;
+    }
+
+    &__wrapper {
+        --background: url("/img/login-bg-mobile.jpg") no-repeat top/cover fixed;
+    }
+
+    @media (min-width: 768px) {
+        &__wrapper {
+            --background: url("/img/login-bg-tablet.jpg") no-repeat top/cover fixed;
+        }
+    }
+
+    &__create {
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    &__footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: var(--color-blue-porto);
+        text-align: center;
+        font-size: 18px;
+        padding: 35px 10px;
+
+        &-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &-icon {
+                padding-right: 10px;
+                font-size: 32px;
+            }
+        }
+    }
+}

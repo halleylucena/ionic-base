@@ -2,7 +2,7 @@ import React from "react"
 import { createRoot } from "react-dom/client"
 import App from "./App"
 import { QueryClient, QueryClientProvider } from "react-query"
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from "react-query/devtools"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import reportWebVitals from "./reportWebVitals"
 
@@ -14,7 +14,7 @@ root.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
             <App />
-            <ReactQueryDevtools  initialIsOpen={false}/>
+            <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     </React.StrictMode>
 )

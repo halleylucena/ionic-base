@@ -4,11 +4,10 @@ module.exports = {
   name: 'base',
   filename: 'remoteEntry.js',
   exposes: {
-    // './App': './src/App',
     './Bootstrap': './src/bootstrap.tsx',
   },
   remotes: {
-    remote: 'remote@https://ionic-components.vercel.app/remoteEntry.js',
+    remote: 'remote@http://localhost:3002/remoteEntry.js',
   },
   shared: {
     ...dependencies,

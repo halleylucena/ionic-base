@@ -1,8 +1,10 @@
-import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle } from "@ionic/react"
-
-import { useLocation } from "react-router-dom"
+import { IonButton, IonContent, IonGrid, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRow } from "@ionic/react"
+import { useHistory, useLocation } from "react-router-dom"
 import { documents, homeSharp } from "ionicons/icons"
-import "./Menu.css"
+import "./Menu.scss"
+import { lazy, Suspense } from "react"
+import useStore from "../store/store"
+import { useAuth } from "../logic/auth/useProvideAuth"
 
 interface AppPage {
     url: string
@@ -26,24 +28,48 @@ const appPages: AppPage[] = [
     },
 ]
 
+const DocumentFilter = lazy(() => import("remote/DocumentFilter"))
+
 const Menu: React.FC = () => {
     const location = useLocation()
+    const typesFiltered = useStore((state: any) => state.typesFiltered)
+    const setTypesFiltered = useStore((state: any) => state.setTypesFiltered)
+    const auth = useAuth()
+    const history = useHistory()
 
     return (
         <IonMenu contentId="main" type="overlay">
             <IonContent>
                 <IonList id="inbox-list">
-                    {appPages.map((appPage, index) => {
-                        return (
-                            <IonMenuToggle key={index} autoHide={false}>
-                                <IonItem className={location.pathname === appPage.url ? "selected" : ""} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                                    <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-                                    <IonLabel>{appPage.title}</IonLabel>
-                                </IonItem>
-                            </IonMenuToggle>
-                        )
-                    })}
+                    {appPages.map((appPage, index) => (
+                        <IonMenuToggle key={index} autoHide={false}>
+                            <IonItem className={location.pathname === appPage.url ? "selected" : ""} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                                <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                                <IonLabel>{appPage.title}</IonLabel>
+                            </IonItem>
+                        </IonMenuToggle>
+                    ))}
                 </IonList>
+                {auth.apiKey !== "" ? (
+                    <IonButton
+                        onClick={() => {
+                            auth.signout(() => history.push("/login"))
+                        }}
+                    >
+                        Sign out
+                    </IonButton>
+                ) : null}
+                <div className="menu-container">
+                    <IonGrid>
+                        <IonRow>
+                            {location.pathname === "/documents/" || location.pathname === "/documents" ? (
+                                <Suspense>
+                                    <DocumentFilter typesFiltered={typesFiltered} setTypesFiltered={setTypesFiltered} />
+                                </Suspense>
+                            ) : null}
+                        </IonRow>
+                    </IonGrid>
+                </div>
             </IonContent>
         </IonMenu>
     )
