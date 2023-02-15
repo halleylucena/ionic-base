@@ -10,7 +10,7 @@ const logo = "/assets/img/vendus-pos-logo-horizontal.svg"
 
 const LoginPage: React.FC = () => {
     const apiKey = useStore((state: any) => state.apiKey)
-    let history = useHistory()
+    const history = useHistory()
     const login = useLogin({})
     const auth = useAuth()
     const [showLoading, setShowLoading] = useState(false)
@@ -25,16 +25,12 @@ const LoginPage: React.FC = () => {
     const [accounts, setAccounts] = useState<any[]>([])
 
     useEffect(() => {
-        console.log("apikey no login: ", apiKey)
+        console.log("API KEY: ", apiKey)
         if (apiKey !== null) {
             history.push("/home")
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    useEffect(() => {
-        console.log("errors: ", errors)
-    }, [errors])
 
     const handleSubmit = async (event: any) => {
         setErrors([])
@@ -48,7 +44,6 @@ const LoginPage: React.FC = () => {
                 setloadingMessage("A obter contas")
                 setShowLoading(true)
                 const req = await login.requestLogin(email)
-                console.log("log do request", req)
                 switch (req.status) {
                     case 200:
                         setAccounts(req.data)
@@ -83,9 +78,7 @@ const LoginPage: React.FC = () => {
                 }
 
                 const req = await login.login(email, password, saas)
-                console.log("log do request 1", req)
                 const returnData = await login.verifyPermission(req.data["api_key"])
-                console.log("log do request 2", returnData)
                 if (returnData.status === 400) {
                     newErrors = ["O seu plano atual não permite a utilização desta aplicação, Por favor, aceda ao Backoffice e subscreva um plano adequado.", ...newErrors]
                 }

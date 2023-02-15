@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext } from "react"
+import { useQueryClient } from "react-query"
 import { Redirect, Route } from "react-router-dom"
 import useStore from "../../store/store"
 
@@ -15,20 +16,34 @@ export function useAuth() {
 
 export function PrivateRoute({ children, ...rest }: any) {
     let auth = useAuth()
-    console.log("api Key: ", auth.apiKey)
-    return <Route {...rest} render={() => (auth.apiKey !== null ? children : <Redirect to="/login" />)} />
+    return (
+        <Route
+            {...rest}
+            render={() =>
+                auth.apiKey !== null ? (
+                    children
+                ) : (
+                    <>
+                        <Redirect
+                            to={{
+                                pathname: "/login",
+                            }}
+                        />
+                    </>
+                )
+            }
+        />
+    )
 }
 
 const useProvideAuth = () => {
-    const [user, setUser] = useState<any>(null)
     const apiKey = useStore((state: any) => state.apiKey)
     const setApiKey = useStore((state: any) => state.setApiKey)
-    const deleteApiKey = useStore((state: any) => state.deleteApiKey)
-    const reset = useStore((state: any) => state.reset)
+    const resetStore = useStore((state: any) => state.resetStore)
+    const queryClient = useQueryClient()
 
     const signin = (apiKey: string, cb: () => void) => {
         return (() => {
-            setUser("logged")
             setApiKey(apiKey)
             cb()
         })()
@@ -36,18 +51,15 @@ const useProvideAuth = () => {
 
     const signout = (cb: () => void) => {
         return (() => {
-            setUser(null)
-            deleteApiKey()
-            reset()
+            resetStore()
+            queryClient.removeQueries()
             cb()
         })()
     }
 
     return {
-        user,
         apiKey,
         setApiKey,
-        deleteApiKey,
         signin,
         signout,
     }

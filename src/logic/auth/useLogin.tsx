@@ -30,7 +30,6 @@ export function useLogin(api: any) {
             })
             .then((response) => (res = response))
             .catch((error) => (res = error.response))
-        console.log("response from axios", res)
         return res
     }
 
@@ -70,7 +69,6 @@ export function useLogin(api: any) {
             })
             .then((response) => (res = response))
             .catch((error) => (res = error.response))
-        console.log("response from axios 2", res)
         return res
     }
 
@@ -104,7 +102,6 @@ export function useLogin(api: any) {
             })
             .then((response) => (res = response))
             .catch((error) => (res = error.response))
-        console.log("response from axios 3", res)
         return res
     }
 

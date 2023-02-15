@@ -8,6 +8,7 @@ const Button = lazy(() => import("remote/ButtonDesktop"))
 const Home: React.FC = () => {
     const auth = useAuth()
     const history = useHistory()
+
     return (
         <IonPage>
             <IonHeader>
@@ -28,7 +29,7 @@ const Home: React.FC = () => {
 
                     <IonButton
                         onClick={() => {
-                            auth.signout(() => history.push("/login"))
+                            auth.signout(() => auth.signout(() => history.go(0)))
                         }}
                     >
                         Sign out

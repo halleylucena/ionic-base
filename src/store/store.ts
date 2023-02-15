@@ -18,6 +18,7 @@ const useStore = create(
             },
             apiKey: null,
             setApiKey: (newApiKey: string) => {
+                console.log("Setting new API KEY: ", newApiKey)
                 set(() => ({
                     apiKey: newApiKey,
                 }))
@@ -27,7 +28,7 @@ const useStore = create(
                     apiKey: null,
                 }))
             },
-            reset: () => {
+            resetStore: () => {
                 set(initialState)
             },
             // Other items in store...

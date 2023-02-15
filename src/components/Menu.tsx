@@ -53,7 +53,7 @@ const Menu: React.FC = () => {
                 {auth.apiKey !== "" ? (
                     <IonButton
                         onClick={() => {
-                            auth.signout(() => history.push("/login"))
+                            auth.signout(() => history.go(0))
                         }}
                     >
                         Sign out

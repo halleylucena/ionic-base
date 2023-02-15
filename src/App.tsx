@@ -1,6 +1,6 @@
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
-import { Redirect, Route, Switch } from "react-router-dom"
+import { Redirect, Route } from "react-router-dom"
 import Menu from "./components/Menu"
 import useStore from "./store/store"
 
@@ -24,7 +24,7 @@ import "@ionic/react/css/display.css"
 import "./theme/variables.scss"
 import "./theme/global.scss"
 import Home from "./pages/Home"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect, useState } from "react"
 import { PrivateRoute, ProvideAuth } from "./logic/auth/useProvideAuth"
 import LoginPage from "./pages/LoginPage"
 
@@ -35,6 +35,12 @@ setupIonicReact()
 
 const App: React.FC = () => {
     const store: any = useStore()
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [disablePane, setDisablePane] = useState(false)
+
+    useEffect(() => {
+        return () => {}
+    }, [])
 
     return (
         <IonApp>
@@ -43,6 +49,12 @@ const App: React.FC = () => {
                     <IonSplitPane contentId="main">
                         <Menu />
                         <IonRouterOutlet id="main">
+                            <Route path="/" exact={true}>
+                                <Redirect to="/home" />
+                            </Route>
+                            <Route path="/login" exact={true}>
+                                <LoginPage />
+                            </Route>
                             <PrivateRoute path="/home" exact={true}>
                                 <Home />
                             </PrivateRoute>
@@ -56,17 +68,8 @@ const App: React.FC = () => {
                                     <DocumentDetail apiKey={store.apiKey} />
                                 </Suspense>
                             </PrivateRoute>
-                            <Route component={Home} />
                         </IonRouterOutlet>
                     </IonSplitPane>
-                    <Switch>
-                        <Route path="/" exact={true}>
-                            <Redirect to="/home" />
-                        </Route>
-                        <Route path="/login" exact={true}>
-                            <LoginPage />
-                        </Route>
-                    </Switch>
                 </IonReactRouter>
             </ProvideAuth>
         </IonApp>
