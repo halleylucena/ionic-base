@@ -2,7 +2,7 @@ const { dependencies } = require("./package.json")
 
 let documentsUrl = "documents@http://localhost:3002/remoteEntry.js"
 if (process.env.NODE_ENV === "production") {
-    documentsUrl = "https://ionic-components.vercel.app/remoteEntry.js"
+    documentsUrl = "documents@https://ionic-components.vercel.app/remoteEntry.js"
 }
 
 module.exports = {
