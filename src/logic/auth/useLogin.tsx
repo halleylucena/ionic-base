@@ -1,5 +1,10 @@
 import axios from "axios"
 
+let baseUrl = "http://vendus-pt/ws/v1.2"
+if (process.env.NODE_ENV === "production") {
+    baseUrl = "https://vendus.pt/ws/v1.2"
+}
+
 export function useLogin(api: any) {
     const requestLogin = async (email: string) => {
         let res: any
@@ -22,7 +27,7 @@ export function useLogin(api: any) {
 
         await axios
             .request({
-                url: "http://vendus-pt/ws/v1.2/account/",
+                url: `${baseUrl}/account/`,
                 method: "GET",
                 params: {
                     _email: email,
@@ -58,7 +63,7 @@ export function useLogin(api: any) {
 
         await axios
             .request({
-                url: "http://vendus-pt/ws/v1.2/account/",
+                url: `${baseUrl}/account/`,
                 method: "GET",
                 params: {
                     _email: email,
@@ -94,7 +99,7 @@ export function useLogin(api: any) {
 
         await axios
             .request({
-                url: "http://vendus-pt/ws/v1.2/account/",
+                url: `${baseUrl}/account/`,
                 method: "GET",
                 params: {
                     api_key: apikey,
