@@ -1,5 +1,7 @@
 import axios from "axios"
 
+console.log("log from login", process.env.NODE_ENV)
+
 let baseUrl = "http://vendus-pt/ws/v1.2"
 if (process.env.NODE_ENV === "production") {
     baseUrl = "https://vendus.pt/ws/v1.2"
