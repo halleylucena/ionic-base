@@ -88,7 +88,7 @@ const LoginPage: React.FC = () => {
                         case 200:
                             if (req.data["api_key"]) {
                                 auth.signin(req.data["api_key"], () => {
-                                    history.push("/home")
+                                    history.push("/")
                                 })
                             } else {
                                 newErrors = ["Ocorreu um erro, por favor tente novamente. #L0102", ...newErrors]

@@ -31,7 +31,10 @@ import LoginPage from "./pages/LoginPage"
 const Documents = lazy(() => import("remote/Documents"))
 const DocumentDetail = lazy(() => import("remote/DocumentDetail"))
 
-setupIonicReact()
+setupIonicReact({
+    rippleEffect: false,
+    mode: "md",
+})
 
 const App: React.FC = () => {
     const store: any = useStore()
@@ -46,11 +49,11 @@ const App: React.FC = () => {
         <IonApp>
             <ProvideAuth>
                 <IonReactRouter>
-                    <IonSplitPane contentId="main">
+                    <IonSplitPane contentId="main" when={false}>
                         <Menu />
                         <IonRouterOutlet id="main">
                             <Route path="/" exact={true}>
-                                <Redirect to="/home" />
+                                <Redirect to="/documents" />
                             </Route>
                             <Route path="/login" exact={true}>
                                 <LoginPage />
@@ -60,7 +63,7 @@ const App: React.FC = () => {
                             </PrivateRoute>
                             <PrivateRoute path="/documents" exact={true}>
                                 <Suspense>
-                                    <Documents typesFiltered={store.typesFiltered} apiKey={store.apiKey} />
+                                    <Documents typesFiltered={store.typesFiltered} setTypesFiltered={store.setTypesFiltered} apiKey={store.apiKey} />
                                 </Suspense>
                             </PrivateRoute>
                             <PrivateRoute path="/documents/:id" exact={true}>
