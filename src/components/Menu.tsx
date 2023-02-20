@@ -28,7 +28,7 @@ const appPages: AppPage[] = [
     },
 ]
 
-// const DocumentFilter = lazy(() => import("remote/DocumentFilter"))
+// const DocumentFilter = lazy(() => import("documents/DocumentFilter"))
 
 const Menu: React.FC = () => {
     const location = useLocation()

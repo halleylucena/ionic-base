@@ -28,8 +28,8 @@ import { lazy, Suspense, useEffect, useState } from "react"
 import { PrivateRoute, ProvideAuth } from "./logic/auth/useProvideAuth"
 import LoginPage from "./pages/LoginPage"
 
-const Documents = lazy(() => import("remote/Documents"))
-const DocumentDetail = lazy(() => import("remote/DocumentDetail"))
+const Documents = lazy(() => import("documents/Documents"))
+const DocumentDetail = lazy(() => import("documents/DocumentDetail"))
 
 setupIonicReact({
     rippleEffect: false,
