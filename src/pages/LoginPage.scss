@@ -21,12 +21,12 @@
     }
 
     &__wrapper {
-        --background: url("https://ionic-host.vercel.app/static/media/login-bg-mobile.jpg") no-repeat top/cover fixed;
+        --background: url("https://pos-host.vercel.app/static/media/login-bg-mobile.jpg") no-repeat top/cover fixed;
     }
 
     @media (min-width: 768px) {
         &__wrapper {
-            --background: url("https://ionic-host.vercel.app/static/media/login-bg-tablet.jpg") no-repeat top/cover fixed;
+            --background: url("https://pos-host.vercel.app/static/media/login-bg-tablet.jpg") no-repeat top/cover fixed;
         }
     }
 
